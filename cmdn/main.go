@@ -21,15 +21,15 @@ func main() {
 
 	h := handler.NewProductHandler(uc)
 
-	lis, err := net.Listen("tcp", ":50051")
+	lis, err := net.Listen("tcp", ":50051") //use tcp protocol to open 50051 port
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	server := grpc.NewServer()
-	pb.RegisterProductServiceServer(server, h)
+	pb.RegisterProductServiceServer(server, h) //server register
 
 	log.Println("Product gRPC server running on :50051")
-	server.Serve(lis)
+	server.Serve(lis) // starts the gRPC server and listens for incoming client connections on the given network listener.
 
 }
